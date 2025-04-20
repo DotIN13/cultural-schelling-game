@@ -52,7 +52,7 @@ class CulturalModel(Model):
     def compute_diversity(self):
         """Compute the number of unique trait combinations across all agents."""
         unique_traits = {tuple(agent.traits) for agent in self.agents}
-        return len(unique_traits)
+        return len(unique_traits) / len(self.agents) if self.agents else 0
 
     def step(self):
         """Advance the model by one step: let agents decide to move or assimilate."""

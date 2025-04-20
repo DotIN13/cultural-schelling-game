@@ -21,7 +21,7 @@ model_params = {
     "density": {"type": "SliderFloat", "value": 0.8, "label": "Population Density", "min": 0, "max": 1, "step": 0.01},
     "desired_similarity": {"type": "SliderFloat", "value": 0.5, "label": "Desired Similarity", "min": 0, "max": 1, "step": 0.01},
     "n_traits": {"type": "SliderInt", "value": 5, "label": "# of Traits", "min": 1, "max": 10, "step": 1},
-    "trait_choices": {"type": "SliderInt", "value": 5, "label": "Trait Choices per Dimension", "min": 2, "max": 10, "step": 1},
+    "trait_choices": {"type": "SliderInt", "value": 5, "label": "Trait Choices per Dimension", "min": 2, "max": 15, "step": 1},
 }
 
 # Annotate last value in diversity plot
@@ -32,7 +32,7 @@ def diversity_post_process(ax):
         return ax
 
     last_x, last_y = x_data[-1], y_data[-1]
-    ax.text(last_x, last_y, f"{last_y}", fontsize=9, ha='center', va='bottom')
+    ax.text(last_x, last_y, f"{last_y:.2f}", fontsize=9, ha='center', va='bottom')
 
 # Set color scale limits for matplotlib grid view
 def mat_post_process(ax):
@@ -47,7 +47,7 @@ def alt_post_process(plot):
             "color:Q",
             scale=alt.Scale(domain=[0, 1], scheme="viridis"),
         ),
-    ).properties(width=300, height=300)
+    ).properties(width=350, height=350)
 
 # Create default model instance
 model = CulturalModel()
